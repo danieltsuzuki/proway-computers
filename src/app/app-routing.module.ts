@@ -1,8 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ProdutosComponent } from './produtos/produtos.component';
 
 const routes: Routes = [
-
+  { path: 'produtos', loadChildren: () => import('./produtos/produtos.module').then(m => m.ProdutosModule) },
+  { path: '', redirectTo:"produtos", pathMatch: "full"}
 ];
 
 @NgModule({
