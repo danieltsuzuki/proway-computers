@@ -1,20 +1,21 @@
 import { Injectable } from '@angular/core';
-import { ICarrinho } from './carrinho';
+import { IProdutoCarrinho } from './produtos';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CarrinhoService {
 
-  itens: ICarrinho[] = [];
+  itens: IProdutoCarrinho[] = [];
 
   constructor() { }
 
   obtemCarrinho(){
-    return JSON.parse(localStorage.getItem("carrinho") || "");
+    this.itens =  JSON.parse(localStorage.getItem("carrinho") || "[]");
+    return this.itens;
   }
 
-  adicionarAoCarrinho(produtoCarrinho: ICarrinho){
+  adicionarAoCarrinho(produtoCarrinho: IProdutoCarrinho){
     this.itens.push(produtoCarrinho);
     localStorage.setItem("carrinho", JSON.stringify(this.itens));
   }
@@ -22,6 +23,11 @@ export class CarrinhoService {
   limparCarrinho(){
     this.itens = [];
     localStorage.clear();
+  }
+
+  removerProdutoCarrinho(produtoId: number){
+    this.itens = this.itens.filter( item => item.id !== produtoId );
+    localStorage.setItem("carrinho", JSON.stringify(this.itens));
   }
 
 }
