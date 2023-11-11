@@ -5,12 +5,14 @@ import { ProdutosRoutingModule } from './produtos-routing.module';
 import { ProdutosComponent } from './produtos.component';
 import { DetalheProdutoComponent } from './detalhe-produto/detalhe-produto.component';
 import { FormsModule } from '@angular/forms';
+import { DescricaoLengthPipe } from '../descricao-length.pipe';
 
 
 @NgModule({
   declarations: [
     ProdutosComponent,
-    DetalheProdutoComponent
+    DetalheProdutoComponent,
+    DescricaoLengthPipe
   ],
   imports: [
     CommonModule,
